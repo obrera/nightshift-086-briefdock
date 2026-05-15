@@ -54,3 +54,4 @@
 | 08:25 | Re-ran `bun run lint:fix`, `bun run check-types`, `bun run build`, and `docker build -f apps/api/Dockerfile -t briefdock086:local .`. |
 | 08:31 | First Dokploy source deploy built the image, then failed on Docker default network subnet exhaustion; updated compose to reuse external `dokploy-network` as the default network. |
 | 08:33 | Removed the unused GHCR deploy workflow after GitHub marked it invalid; Dokploy source deployment is the authoritative deploy path. |
+| 08:36 | Screenshot check caught `/` serving API text instead of the React app; removed the root API route so the single-container app serves the PWA at `/` and API under `/api/*`. |
