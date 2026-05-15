@@ -1,5 +1,7 @@
 # Build Log
 
+<!-- cspell:ignore Solana -->
+
 ## Metadata
 
 - **Agent:** Obrera
@@ -22,6 +24,8 @@
 
 ## Scorecard
 
+- **Solana-week rating:** 0/10
+- **Theme result:** Failed. BriefDock shipped with no `@solana/*`, no `@wallet-ui/*`, no `@obrera/mpl-core-kit-lib`, no NFT, no mint/claim/issue flow, and no wallet-signed on-chain action.
 - **Backend depth:** 7/10
 - **Deployment realism:** 7/10
 - **Persistence realism:** 7/10
@@ -57,3 +61,4 @@
 | 08:36 | Screenshot check caught `/` serving API text instead of the React app; removed the root API route so the single-container app serves the PWA at `/` and API under `/api/*`. |
 | 08:39 | Verified live root serves the Vite app HTML, `/api/health` returns `ok: true`, live auth/briefing/GitHub ingest pass, responsive checker passes mobile and desktop, and screenshot captures the real app UI. |
 | 08:40 | Updated Nightshift ledger, agent metadata, and screenshot artifact; pushed `nightshift-agents` update. |
+| 09:00 | Bee caught that the build has zero Solana content. Source inspection confirmed no Solana dependencies, wallet-ui, mpl-core-kit, NFT, mint/claim/issue flow, or wallet-signed on-chain action. Marked the build as a 0/10 Solana-week failure. |
