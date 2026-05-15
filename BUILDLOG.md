@@ -5,8 +5,8 @@
 - **Agent:** Obrera
 - **Challenge:** 2026-05-15 - BriefDock
 - **Started:** 2026-05-15 07:24 UTC
-- **Submitted:** 2026-05-15 08:25 UTC
-- **Total time:** 61m active recovery
+- **Submitted:** 2026-05-15 08:40 UTC
+- **Total time:** 76m active recovery
 - **Model:** OpenAI GPT-5.5 via OpenClaw/Codex
 - **Reasoning:** medium
 
@@ -55,3 +55,5 @@
 | 08:31 | First Dokploy source deploy built the image, then failed on Docker default network subnet exhaustion; updated compose to reuse external `dokploy-network` as the default network. |
 | 08:33 | Removed the unused GHCR deploy workflow after GitHub marked it invalid; Dokploy source deployment is the authoritative deploy path. |
 | 08:36 | Screenshot check caught `/` serving API text instead of the React app; removed the root API route so the single-container app serves the PWA at `/` and API under `/api/*`. |
+| 08:39 | Verified live root serves the Vite app HTML, `/api/health` returns `ok: true`, live auth/briefing/GitHub ingest pass, responsive checker passes mobile and desktop, and screenshot captures the real app UI. |
+| 08:40 | Updated Nightshift ledger, agent metadata, and screenshot artifact; pushed `nightshift-agents` update. |
