@@ -20,7 +20,7 @@
     "vite-bundle-analyzer": "1.2.3",
     "zod": "4.1.13"
   },
-  "description": "",
+  "description": "Nightshift 086: BriefDock, an incident handoff desk for missed automations and repo freshness checks",
   "devDependencies": {
     "@biomejs/biome": "2.4.6",
     "@commitlint/cli": "20.2.0",

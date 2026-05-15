@@ -1,87 +1,60 @@
-# nightshift-086-briefdock
+# BriefDock
 
-App-focused Bun monorepo with a [Hono](https://hono.dev/) API, a [React](https://react.dev/) + [Vite](https://vitejs.dev/) web app, and shared internal workspace packages.
+Nightshift 086 for 2026-05-15.
 
-## Features
+BriefDock is a backend-first incident handoff desk for missed automation runs, stale repository checks, and accountable timed holds. It was built after the scheduled Nightshift cron isolated-agent dispatch missed its 01:00 UTC run.
 
-- Bun workspaces with a pinned `packageManager`
-- Turbo-powered build and task orchestration
-- `apps/api` for the Bun + Hono backend
-- `apps/web` for the React + Vite frontend
-- Shared internal packages for env, i18n, shell, and UI
-- Biome, commitlint, cspell, and Lefthook for project quality checks
+## Live
 
-## Requirements
+- App: https://briefdock086.colmena.dev
+- Repository: https://github.com/obrera/nightshift-086-briefdock
 
-- [Node.js](https://nodejs.org) 24 or newer
-- [Bun](https://bun.sh) 1.3.11 or newer
+## Product Shape
 
-## Installation
+- Primary actor: automation operator / maintainer
+- Interaction model: incident queue with timed holds
+- System primitive: escalation and handoff ledger
+- External system: GitHub repository freshness ingestion
+- Visual direction: paper operations board with high-contrast ink, lime labels, and red action stamps
+
+## Capabilities
+
+- Operator sign-in for `bee` or `obrera` using a server-validated passcode and durable session token.
+- SQLite-backed incident queue seeded with the missed 2026-05-15 Nightshift cron event.
+- Live GitHub ingestion for configured repositories, persisted as check records and escalation incidents.
+- Product-critical signed actor action: authenticated users can put incidents on timed holds or clear them with required handoff notes.
+- Actor trace panel records who performed every hold/clear action and when.
+
+## Running Locally
 
 ```bash
 bun install
-```
-
-If you want local env files instead of the built-in defaults, copy the examples before starting the apps:
-
-```bash
 cp apps/api/.env.example apps/api/.env
 cp apps/web/.env.example apps/web/.env
-```
-
-## Development
-
-Start every workspace task:
-
-```bash
 bun run dev
 ```
 
-Start only the API:
+The default local passcode is `nightshift-086`.
+
+## Deployment
+
+The app ships as a single Docker container through `docker-compose.yml`: Hono serves both `/api/*` and the Vite-built frontend. Runtime data is stored in SQLite at `DATABASE_PATH`.
+
+Required runtime environment:
 
 ```bash
-bun run dev:api
+CORS_ORIGINS=https://briefdock086.colmena.dev
+DATABASE_PATH=/data/briefdock.sqlite
+GITHUB_REPOS=obrera/nightshift-085-relicforge,obrera/nightshift-agents,create-seed/templates
+OPERATOR_PASSCODE=<secret passcode>
+PORT=3000
 ```
 
-Start only the web app:
+## Challenge Metadata
 
-```bash
-bun run dev:web
-```
-
-## Quality Checks
-
-Run the full CI command:
-
-```bash
-bun run ci
-```
-
-Run individual checks:
-
-```bash
-bun run build
-bun run check-types
-bun run lint
-bun run lint:fix
-bun run spell-check
-```
-
-## Project Structure
-
-```
-.
-├── apps/               # Application source code
-│   ├── api/           # Backend API
-│   └── web/           # Frontend Web Application
-├── packages/          # Shared packages
-│   ├── config-*/      # Shared configuration (TypeScript, Vite, etc.)
-│   ├── env/           # Environment variable handling
-│   ├── shell/         # Shared shell/layout components
-│   └── ui/            # Shared UI component library
-└── turbo/             # Turbo configuration and generators
-```
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+- Agent: Obrera
+- Model: OpenAI GPT-5.5 via OpenClaw/Codex
+- Reasoning: medium
+- Stack: TypeScript, Bun, Hono, React, Vite, Tailwind, SQLite
+- Starter: `create-seed@1.7.0` template `bun-monorepo`
+- License: MIT

@@ -1,0 +1,30 @@
+services:
+  briefdock086:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      CORS_ORIGINS: https://briefdock086.colmena.dev
+      DATABASE_PATH: /data/briefdock.sqlite
+      GITHUB_REPOS: obrera/nightshift-085-relicforge,obrera/nightshift-agents,create-seed/templates
+      NODE_ENV: production
+      OPERATOR_PASSCODE: ${OPERATOR_PASSCODE:-nightshift-086}
+      PORT: "3000"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.briefdock086.entrypoints: websecure
+      traefik.http.routers.briefdock086.rule: Host(`briefdock086.colmena.dev`)
+      traefik.http.routers.briefdock086.tls.certresolver: letsencrypt
+      traefik.http.services.briefdock086.loadbalancer.server.port: "3000"
+    networks:
+      - dokploy-network
+    restart: unless-stopped
+    volumes:
+      - briefdock086-data:/data
+
+networks:
+  dokploy-network:
+    external: true
+
+volumes:
+  briefdock086-data:

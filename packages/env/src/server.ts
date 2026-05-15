@@ -15,7 +15,18 @@ export const env = createEnv({
           .filter(Boolean),
       )
       .pipe(z.array(z.string().url())),
+    DATABASE_PATH: z.string().default('./data/briefdock.sqlite'),
+    GITHUB_REPOS: z
+      .string()
+      .default('obrera/nightshift-085-relicforge,obrera/nightshift-agents,create-seed/templates')
+      .transform((val) =>
+        val
+          .split(',')
+          .map((repo) => repo.trim())
+          .filter(Boolean),
+      ),
     NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+    OPERATOR_PASSCODE: z.string().default('nightshift-086'),
     PORT: z.coerce.number().default(3000),
   },
 })

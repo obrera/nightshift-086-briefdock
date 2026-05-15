@@ -25,6 +25,7 @@
       "dependencies": {
         "@workspace/env": "workspace:*",
         "hono": "catalog:",
+        "zod": "catalog:",
       },
       "devDependencies": {
         "@types/bun": "catalog:",
@@ -103,6 +104,7 @@
         "@workspace/env": "workspace:*",
         "@workspace/i18n": "workspace:*",
         "@workspace/ui": "workspace:*",
+        "lucide-react": "catalog:",
         "react-router": "catalog:",
         "superjson": "2.2.6",
       },

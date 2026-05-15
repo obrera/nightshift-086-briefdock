@@ -37,12 +37,23 @@ const config: CSpellSettings = {
   words: [
     ...getPackageNames(),
     // English
+    'automations',
     'beeman',
-    'nightshift-086-briefdock',
+    'briefdock',
+    'BUILDLOG',
+    'certresolver',
+    'colmena',
     'distroless',
+    'dokploy',
+    'letsencrypt',
+    'nightshift',
+    'nightshift-086-briefdock',
     'nonroot',
     'nossl',
     'nums',
+    'obrera',
+    'relicforge',
+    'websecure',
   ],
 }
 
