@@ -17,13 +17,14 @@ services:
       traefik.http.routers.briefdock086.tls.certresolver: letsencrypt
       traefik.http.services.briefdock086.loadbalancer.server.port: "3000"
     networks:
-      - dokploy-network
+      - default
     restart: unless-stopped
     volumes:
       - briefdock086-data:/data
 
 networks:
-  dokploy-network:
+  default:
+    name: dokploy-network
     external: true
 
 volumes:
