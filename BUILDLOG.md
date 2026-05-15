@@ -53,3 +53,4 @@
 | 08:25 | Added `docker-compose.yml` for Dokploy source deployment and verified compose config. |
 | 08:25 | Re-ran `bun run lint:fix`, `bun run check-types`, `bun run build`, and `docker build -f apps/api/Dockerfile -t briefdock086:local .`. |
 | 08:31 | First Dokploy source deploy built the image, then failed on Docker default network subnet exhaustion; updated compose to reuse external `dokploy-network` as the default network. |
+| 08:33 | Removed the unused GHCR deploy workflow after GitHub marked it invalid; Dokploy source deployment is the authoritative deploy path. |
